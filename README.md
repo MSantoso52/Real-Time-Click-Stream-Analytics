@@ -84,4 +84,4 @@ Need to be installed on your system (mine: *cachyos*):
 ## *Project Flow*
 
 ## *Screenshot*
-![Grafana]()
+![Grafana](Real-time streaming.png)

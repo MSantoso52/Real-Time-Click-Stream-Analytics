@@ -175,8 +175,8 @@ Need to be installed on your system (mine: *cachyos*):
     - Name: clickhouse_ds
     - URL: http://clickhouse:8123
     - Database: sales
-    - User: <user>
-    - Password: <password>
+    - User: [user]
+    - Password: [password]
 - Create a Dashboard
   - Add a Time series panel.
   - Query (SQL) for real-time transaction monitoring:

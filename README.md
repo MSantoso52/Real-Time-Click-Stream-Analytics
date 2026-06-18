@@ -1,5 +1,6 @@
 # Real-Time Click-Stream Analytics
 Real-time data streaming using Kafka, Clickhouse &amp; Grafana
+![Click-stream](click-stream.png)
 
 ## *Project Overview*
 A self‑contained demo (Docker‑Compose) that ingests click events from Kafka into ClickHouse, stores them in a MergeTree table, and creates a materialized view that continuously rolls up unique active transaction per 5s. The resulting metric is visualised in a live Grafana dashboard. The stack includes Kafka → ClickHouse Kafka engine → MergeTree storage → Materialized view → Grafana.

@@ -34,20 +34,20 @@ A self‑contained demo (Docker‑Compose) that ingests click events from Kafka 
   - Performance tuning
   - Dashboarding
   - Monitoring
-  - ClickHouse provides major leverage because it can:
-    - Ingest large volumes of data quickly
-    - Store events efficiently
-    - Run fast analytical queries
-    - Maintain aggregated tables automatically
-  - The same architecture can be reused for:
-    - Ad-tech analytics
-    - IoT event monitoring
-    - Log analytics
-    - Product analytics
-    - Fraud detection dashboards
-  - The project is highly portfolio-friendly because it shows both:
-    - Technical depth
-    - Clear business value
+- ClickHouse provides major leverage because it can:
+  - Ingest large volumes of data quickly
+  - Store events efficiently
+  - Run fast analytical queries
+  - Maintain aggregated tables automatically
+- The same architecture can be reused for:
+  - Ad-tech analytics
+  - IoT event monitoring
+  - Log analytics
+  - Product analytics
+  - Fraud detection dashboards
+- The project is highly portfolio-friendly because it shows both:
+  - Technical depth
+  - Clear business value
 
 ## Prerequisite
 

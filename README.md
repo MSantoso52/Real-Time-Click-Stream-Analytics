@@ -82,7 +82,7 @@ Need to be installed on your system (mine: *cachyos*):
   ``` 
 
 ## *Project Flow*
-- Create docker-compose.yml to collaborate Kafka - Clickhouse - Grafana, OR use existing docker of Kafka - Clickhouse - Grafana in my case by create docker network hence they can communicate each other:
+- Create docker-compose.yml to collaborate Kafka - Clickhouse - Grafana, OR use existing docker of Kafka - Clickhouse - Grafana by creating docker network hence they can communicate each other:
   ```bash
   # checking active container
   CONTAINER ID   IMAGE                                 COMMAND                  CREATED       STATUS                  PORTS                                                                                                NAMES

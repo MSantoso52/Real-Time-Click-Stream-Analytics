@@ -39,7 +39,7 @@ A self‑contained demo (Docker‑Compose) that ingests click events from Kafka 
   - Fraud detection dashboards
 
 ## Prerequisite
-Need to be installed on your system:
+Need to be installed on your system (mine: *cachyos*):
 - Docker & docker-compose installed for docker build
   ```bash
   sudo pacman -S docker docker-compose buildx

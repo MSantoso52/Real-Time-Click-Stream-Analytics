@@ -2,7 +2,7 @@
 Real-time data streaming using Kafka, Clickhouse &amp; Grafana
 
 ## *Project Overview*
-A self‑contained demo (Docker‑Compose) that ingests click events from Kafka into ClickHouse, stores them in a MergeTree table, and creates a materialized view that continuously rolls up unique active transaction per 5 seconds. The resulting metric is visualised in a live Grafana dashboard. The stack includes Kafka → ClickHouse Kafka engine → MergeTree storage → Materialized view → Grafana.
+A self‑contained demo (Docker‑Compose) that ingests click events from Kafka into ClickHouse, stores them in a MergeTree table, and creates a materialized view that continuously rolls up unique active transaction per 5s. The resulting metric is visualised in a live Grafana dashboard. The stack includes Kafka → ClickHouse Kafka engine → MergeTree storage → Materialized view → Grafana.
 
 ## *Problem To Be Solved*
 - Websites and mobile apps generate huge volumes of click-stream data every second.
@@ -82,6 +82,26 @@ Need to be installed on your system (mine: *cachyos*):
   ``` 
 
 ## *Project Flow*
+- Create docker-compose.yml to collaborate Kafka - Clickhouse - Grafana, OR use existing docker of Kafka - Clickhouse - Grafana in my case by create docker network hence they can communicate each other:
+  ```bash
+  # checking active container
+   CONTAINER ID   IMAGE                                 COMMAND                  CREATED       STATUS                  PORTS                                                                                                NAMES
+  dc5c96f41fdc   clickhouse/clickhouse-server:latest   "/entrypoint.sh"         2 days ago    Up 2 days               0.0.0.0:8123->8123/tcp, [::]:8123->8123/tcp, 9009/tcp, 0.0.0.0:9002->9000/tcp, [::]:9002->9000/tcp   clickhouse-server
+  8e4bdc2aef82   confluentinc/cp-kafka:7.6.1           "/etc/confluent/dock…"   3 days ago    Up 2 days (healthy)     9092/tcp, 0.0.0.0:29092->29092/tcp, [::]:29092->29092/tcp                                            kafka
+  fb7ec05260d3   grafana/grafana                       "/run.sh"                3 weeks ago   Up 2 days               0.0.0.0:3000->3000/tcp, [::]:3000->3000/tcp                                                          observability-grafana-1
+
+  # create docker network
+  docker network create realtime-net
+
+  # Add kafka to docker network
+  docker metwork connect realtime-net kafka
+
+  # Add grafana to docker network
+  docker metwork connect realtime-net observability-grafana-1
+
+  # Add clickhouse to docker network
+  docker metwork connect realtime-net clickhouse-server  
+   ```
 
 ## *Screenshot*
 ![Grafana](Real-time_streaming.png)

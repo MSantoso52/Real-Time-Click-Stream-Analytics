@@ -103,7 +103,36 @@ Need to be installed on your system (mine: *cachyos*):
   docker metwork connect realtime-net clickhouse-server  
    ```
   - Create python code to simulate transaction as streaming and publish into kafka publisher
+    ```python
+    ...
+    # kafka configuration
+    KAFKA_BROKER = 'localhost:29092'
+    KAFKA_TOPIC = 'sales_data'
+
+    ...
+
+    '''configure producer'''
+    producer = Producer({
+                'bootstrap.servers': KAFKA_BROKER,
+                'client.id': 'sales-producer'
+            })
+    print(f'Starting producer ... Will generate up to {MAX_RECORDS:,} records')
+
+    ...
+
+    # Produce batch of the records
+    for _ in range(min(BATCH_SIZE, MAX_RECORDS - record_count)):
+      record = generate_sales_record(record_count)
+      producer.produce(
+        KAFKA_TOPIC,
+        key=record['transaction_id'],
+        value=json.dumps(record),
+        callback=deliver_report
+    )
+    ```
   - Create pyton code to consume data already publish by kafka
+    ```python
+    ```
   - Setup Grafana for real-time monitoring
     - Open Grafana: http://localhost:3000 (login: admin / admin).
     - Add ClickHouse datasource
@@ -121,7 +150,7 @@ Need to be installed on your system (mine: *cachyos*):
         sum(qty_sale) AS sales_qty,
         sum(item_price * qty_sale) AS sales_amount
       FROM sales_data
-      WHERE timestamp >= (now() - toIntervalMinute(1))
+      WHERE timestamp >= (now() - toIntervalMinute(5))
       GROUP BY time
       ORDER BY time AS
       ```

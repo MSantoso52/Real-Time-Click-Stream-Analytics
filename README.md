@@ -83,7 +83,7 @@ Need to be installed on your system (mine: *cachyos*):
 
 ## *Project Flow*
 - Create docker-compose.yml to collaborate Kafka - Clickhouse - Grafana, OR use existing docker of Kafka - Clickhouse - Grafana by creating docker network hence they can communicate each other:
-  ```bash
+    ```bash
   # checking active container
   CONTAINER ID   IMAGE                                 COMMAND                  CREATED       STATUS                  PORTS                                                                                                NAMES
   dc5c96f41fdc   clickhouse/clickhouse-server:latest   "/entrypoint.sh"         2 days ago    Up 2 days               0.0.0.0:8123->8123/tcp, [::]:8123->8123/tcp, 9009/tcp, 0.0.0.0:9002->9000/tcp, [::]:9002->9000/tcp   clickhouse-server
@@ -102,8 +102,8 @@ Need to be installed on your system (mine: *cachyos*):
   # Add clickhouse to docker network
   docker metwork connect realtime-net clickhouse-server  
    ```
-  - Create python code to simulate transaction as streaming and publish into kafka publisher
-    ```python
+- Create python code to simulate transaction as streaming and publish into kafka publisher
+  ```python
     ...
     # kafka configuration
     KAFKA_BROKER = 'localhost:29092'
@@ -129,9 +129,9 @@ Need to be installed on your system (mine: *cachyos*):
         value=json.dumps(record),
         callback=deliver_report
     )
-    ```
-  - Create pyton code to consume data already publish by kafka
-    ```python
+   ```
+- Create pyton code to consume data already publish by kafka
+  ```python
     ...
     # Kafka configuration
     KAFKA_BROKER = 'localhost:29092'
@@ -168,18 +168,18 @@ Need to be installed on your system (mine: *cachyos*):
         batch = []
     ...
 
-    ```
-  - Setup Grafana for real-time monitoring
-    - Open Grafana: http://localhost:3000 (login: admin / admin).
-    - Add ClickHouse datasource
-      - Name: clickhouse_ds
-      - URL: http://clickhouse:8123
-      - Database: sales
-      - User: <user>
-      - Password: <password>
-  - Create a Dashboard
-    - Add a Time series panel.
-    - Query (SQL) for real-time transaction monitoring:
+  ```
+- Setup Grafana for real-time monitoring
+  - Open Grafana: http://localhost:3000 (login: admin / admin).
+  - Add ClickHouse datasource
+    - Name: clickhouse_ds
+    - URL: http://clickhouse:8123
+    - Database: sales
+    - User: <user>
+    - Password: <password>
+- Create a Dashboard
+  - Add a Time series panel.
+  - Query (SQL) for real-time transaction monitoring:
       ```sql
       SELECT
         toStartOfSecond(toDateTime64(timestamp, 0)) AS time,

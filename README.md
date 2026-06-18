@@ -2,7 +2,7 @@
 Real-time data streaming using Kafka, Clickhouse &amp; Grafana
 
 ## *Project Overview*
-A self‑contained demo (Docker‑Compose) that ingests click events from Kafka into ClickHouse, stores them in a MergeTree table, and creates a materialized view that continuously rolls up unique active users per minute. The resulting metric is visualised in a live Grafana dashboard. The stack includes Kafka (or Redpanda) → ClickHouse Kafka engine → MergeTree storage → Materialized view → Grafana.
+A self‑contained demo (Docker‑Compose) that ingests click events from Kafka into ClickHouse, stores them in a MergeTree table, and creates a materialized view that continuously rolls up unique active transaction per 5 seconds. The resulting metric is visualised in a live Grafana dashboard. The stack includes Kafka → ClickHouse Kafka engine → MergeTree storage → Materialized view → Grafana.
 
 ## *Problem To Be Solved*
 - Websites and mobile apps generate huge volumes of click-stream data every second.
